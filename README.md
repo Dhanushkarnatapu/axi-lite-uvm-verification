@@ -1,53 +1,53 @@
-AXI4-Lite IP Repository Documentation
-Project Overview
+AXI4-Lite with UVM Verification
+Overview
 
-The AXI4-Lite repository contains a fully synthesizable AXI4-Lite master/slave interface module along with a UVM-based verification environment. This IP is designed to integrate into SoC designs or FPGA projects requiring a lightweight AXI interface for control and status registers.
+This project implements an AXI4-Lite interface in SystemVerilog and verifies the design using a UVM (Universal Verification Methodology) based verification environment.
 
-Key Features:
+The AXI4-Lite IP provides a lightweight, single-beat transaction interface suitable for control and status registers in SoC or FPGA designs.
 
-Supports AXI4-Lite read and write transactions.
+Design Features
 
-Burst size fixed to 1 (per AXI4-Lite spec).
+AXI4-Lite read and write channels
 
-Fully verified using a SystemVerilog UVM environment.
+Single-beat transaction support (burst size = 1)
 
-Configurable address and data width for flexible integration.
+Parameterizable address and data width
 
-Includes a top-level testbench for functional verification.
+Proper handshake and response signaling (VALID / READY, RESP)
 
-Functional Description
+Synthesizable RTL implementation
 
-The AXI4-Lite module implements the following interfaces and behaviors:
-Write Channel:
-AWADDR, AWVALID, AWREADY signals for address handshake.
+Verification Environment
 
-WDATA, WSTRB, WVALID, WREADY signals for data handshake.
+The design is verified using a UVM testbench architecture including:
 
-BVALID, BRESP for write response.
+UVM agents for AXI master and slave interfaces
 
-Read Channel:
-ARADDR, ARVALID, ARREADY for read address handshake.
+Drivers and monitors for stimulus and observation
 
-RDATA, RRESP, RVALID, RREADY for read data handshake.
+Sequencers and sequences for transaction generation
 
-Protocol Compliance:
-Supports AXI4-Lite single-beat transactions.
+Scoreboard for functional checking
 
-Proper handshake sequencing enforced.
+Top-level testbench integrating DUT with the UVM environment
 
-Verification
-The verification environment uses UVM (Universal Verification Methodology) to fully exercise the AXI4-Lite interface.
+Repository Structure
+rtl/   -> RTL implementation of AXI4-Lite
+uvm/   -> UVM verification components including agents, env, tests, and top-level TB
+Tools Used
 
-UVM Components:
-Agents: AXI master and slave agents generate transactions.
+SystemVerilog
 
-Environment (env): Instantiates agents and connects to DUT.
+UVM
 
-Test Sequences: Constrained-random and directed tests to validate protocol compliance.
+ModelSim / QuestaSim / VCS / Xcelium simulation
 
-Top-Level Testbench (axi4_lite_tb.sv): Integrates DUT with UVM environment.
+Learning Outcomes
 
-Simulation:
-Can be run with standard SystemVerilog simulators (VCS, QuestaSim, Xcelium).
+AXI4-Lite protocol understanding and implementation
 
-Generates waveforms to observe transaction sequences and verify correctness.
+DUT integration with UVM environment
+
+Testbench architecture and functional verification
+
+Scoreboard and transaction-based verification methodology
